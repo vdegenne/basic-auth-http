@@ -106,7 +106,7 @@ export class Basic extends events.EventEmitter {
   validate(hash: string, password: string) {
     if (hash.substr(0, 5) === '{SHA}') {
       hash = hash.substr(5);
-      return hash === sha1(hash);
+      return hash === sha1(password);
     } else {
       return hash === password;
     }
