@@ -1,6 +1,6 @@
 {
   "name": "basic-auth-http",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "A simple object to implement http basic authentication.",
   "author": "Valentin Degenne <vdegenne@gmail.com>",
   "repository": "vdegenne/basic-auth-http",
