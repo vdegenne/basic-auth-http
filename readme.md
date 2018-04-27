@@ -1,11 +1,11 @@
-# http-basic-auth
+# basic-auth-http
 
 A simple object to implement http basic authentication.
 
 ## Usage
 
 ```javascript
-import {Basic as auth} from 'http-basic-auth';
+import {Basic as auth} from 'basic-auth-http';
 
 const app = express();
 const auth = new Auth({
@@ -30,7 +30,7 @@ app.use((req, res, next) => {
 ## Installation
 
 ```bash
-yarn add http-basic-auth
+yarn add basic-auth-http
 ```
 
 ## Notes

@@ -1,10 +1,10 @@
 {
-  "name": "http-basic-auth",
+  "name": "basic-auth-http",
   "version": "0.1.0",
   "description": "A simple object to implement http basic authentication.",
   "author": "Valentin Degenne <vdegenne@gmail.com>",
-  "repository": "vdegenne/http-basic-auth",
-  "main": "lib/http-basic-auth",
+  "repository": "vdegenne/basic-auth-http",
+  "main": "lib/basic-auth-http",
   "license": "MIT",
   "keywords": [
     "http",
@@ -35,5 +35,5 @@
     "tslint": "^5.9.1",
     "typescript": "^2.8.1"
   },
-  "typings": "lib/http-basic-auth.d.ts"
+  "typings": "lib/basic-auth-http.d.ts"
 }

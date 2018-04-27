@@ -1,4 +1,3 @@
-import * as crypto from 'crypto';
 import * as events from 'events';
 import {Request, Response} from 'express-serve-static-core';
 import {readFileSync} from 'fs';
