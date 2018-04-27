@@ -5,16 +5,16 @@ A simple object to implement http basic authentication.
 ## Usage
 
 ```javascript
-import {Basic as BasicAuth} from 'http-basic-auth';
+import {Basic as auth} from 'http-basic-auth';
 
 const app = express();
-const basic = new Basic({
+const auth = new Auth({
   file: '/path/to/user-password-pairs'
 });
 
 app.use((req, res, next) => {
   // returns 401 Unauthorized if check doesn't pass (the callback is not called, no next).
-  basic.check(req, res, (err: Error) => {
+  auth.check(req, res, (err: Error) => {
     if (err) {
       next(err);
     }
