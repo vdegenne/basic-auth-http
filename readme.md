@@ -24,3 +24,15 @@ app.use((req, res, next) => {
   });
 });
 ```
+
+*You can check the test for more details*
+
+## Installation
+
+```bash
+yarn add http-basic-auth
+```
+
+## Notes
+
+This is just a bit of code that I wrote for testing and for implementing in a private architecture. Use with caution. If you really want to secure your application you should also make use of https to encrypt the headers because http authorization is sending plain passwords in the request. If you wish to contribute you can propose a PR on the related github, I'd be glad to improve this tiny api.
