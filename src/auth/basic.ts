@@ -1,13 +1,24 @@
 import * as events from 'events';
-import {Request, Response} from 'express-serve-static-core';
-import {readFileSync} from 'fs';
+import { readFileSync } from 'fs';
 
-import {sha1} from './util';
+import { sha1 } from './util';
+import { IncomingMessage, ServerResponse } from 'http';
+import { RequestHandler, Request, Response } from 'express';
 
 
 
 export class Basic extends events.EventEmitter {
   private options: any;
+  public middleware: RequestHandler = (req: Request, res: Response, next: Function) => {
+    this.check(req, res, (err: Error) => {
+      if (err) {
+        next(err);
+      }
+      else {
+        next();
+      }
+    });
+  };
 
   constructor(options: any) {
     super();
@@ -100,7 +111,7 @@ export class Basic extends events.EventEmitter {
       }
     });
 
-    cb({user: username, pass: pass});
+    cb({ user: username, pass: pass });
   }
 
   validate(hash: string, password: string) {
@@ -121,8 +132,8 @@ export class Basic extends events.EventEmitter {
 
   loadUsers() {
     let users = readFileSync(this.options.file, 'UTF-8')
-                    .replace(/\r\n/g, '\n')
-                    .split('\n');
+      .replace(/\r\n/g, '\n')
+      .split('\n');
 
     users.forEach(u => {
       if (u && !u.match(/^\s*#.*/)) {
@@ -130,7 +141,7 @@ export class Basic extends events.EventEmitter {
         const username = lineSplit[0];
         const hash = lineSplit[1];
 
-        this.options.users.push({username, hash});
+        this.options.users.push({ username, hash });
       }
     });
   }

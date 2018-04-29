@@ -1,20 +1,35 @@
-# basic-auth-http
+# dummy-http-basic-auth
 
-A simple object to implement http basic authentication.
+A simple object to implement a dummy http basic authentication.
 
 ## Usage
 
 ```javascript
-import {Basic as auth} from 'basic-auth-http';
+import {Basic} from 'dummy-http-basic-auth';
 
-const app = express();
-const auth = new Auth({
+const basic = new Basic({
   file: '/path/to/user-password-pairs'
 });
 
+const app = express();
+
+app.use(basic.middleware);
+app.get('/secured', (req, res) => {
+  res.send('if you see this, you are authenticated');
+});
+```
+
+If we need more control,
+
+```javascript
 app.use((req, res, next) => {
+  // no-need-authentication-routes
+  if (['/public-route', '/public-script.js'].includes(req.url)) {
+    next();
+  }
+  // else check for authentication
   // returns 401 Unauthorized if check doesn't pass (the callback is not called, no next).
-  auth.check(req, res, (err: Error) => {
+  basic.check(req, res, (err: Error) => {
     if (err) {
       next(err);
     }
@@ -27,11 +42,6 @@ app.use((req, res, next) => {
 
 *You can check the test for more details*
 
-## Installation
-
-```bash
-yarn add basic-auth-http
-```
 
 ## Notes
 
