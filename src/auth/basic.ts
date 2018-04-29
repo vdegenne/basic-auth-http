@@ -10,6 +10,7 @@ import { RequestHandler, Request, Response } from 'express';
 export class Basic extends events.EventEmitter {
   private options: any;
   public middleware: RequestHandler = (req: Request, res: Response, next: Function) => {
+    this.loadUsers();
     this.check(req, res, (err: Error) => {
       if (err) {
         next(err);
@@ -35,8 +36,6 @@ export class Basic extends events.EventEmitter {
     }
 
     this.options = options;
-
-    this.options.users = [];
 
     if (options.file) {
       this.loadUsers();
@@ -134,6 +133,9 @@ export class Basic extends events.EventEmitter {
     let users = readFileSync(this.options.file, 'UTF-8')
       .replace(/\r\n/g, '\n')
       .split('\n');
+
+    // refresh the object
+    this.options.users = [];
 
     users.forEach(u => {
       if (u && !u.match(/^\s*#.*/)) {

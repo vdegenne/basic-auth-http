@@ -28,6 +28,7 @@ app.use((req, res, next) => {
     next();
   }
   // else check for authentication
+  // basic.loadUsers(); // use this if you need to integrate changes made from the user list file without restarting the server.
   // returns 401 Unauthorized if check doesn't pass (the callback is not called, no next).
   basic.check(req, res, (err: Error) => {
     if (err) {
